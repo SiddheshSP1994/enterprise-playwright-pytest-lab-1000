@@ -63,7 +63,12 @@ def main() -> int:
         print("pytest not installed. Run: pip install -r requirements.txt", file=sys.stderr)
         return 1
 
-    return pytest.main(["-n", "auto", "--maxfail=1", "--alluredir", "allure-results"])
+    return pytest.main([
+        "-n", "auto", "--maxfail=1",
+        "--alluredir", "allure-results",
+        "--html", "pytest-report.html", "--self-contained-html",
+        "--junitxml", "reports/junit.xml",
+    ])
 
 if __name__ == "__main__":
     mp.freeze_support()  # required on Windows
